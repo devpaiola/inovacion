@@ -10,7 +10,7 @@ import { User } from './users/user.entity';
       host: 'localhost',
       port: 5432,
       username: 'inovacion',
-      password: 'senha123',
+      password: '988409008Fa&',
       database: 'inovaciondb',
       autoLoadEntities: true,
       synchronize: true,
