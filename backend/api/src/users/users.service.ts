@@ -5,43 +5,27 @@ import { User } from './user.entity';
 
 @Injectable()
 export class UsersService {
-  async findOneByUsername(username: string): Promise<User | null> {
-    return await this.userRepository.findOne({ where: { username } }) || null;
+  remove(id: number) {
+    throw new Error('Method not implemented.');
   }
-
+  update(id: number, name: string, email: string, password: string) {
+    throw new Error('Method not implemented.');
+  }
+  findOne(id: number) {
+    throw new Error('Method not implemented.');
+  }
+  findAll() {
+    throw new Error('Method not implemented.');
+  }
+  create(name: string, email: string, password: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor(
-    @InjectRepository(User)
+    @InjectRepository(User) // Injeção correta do repositório
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async create(name: string, email: string, password: string): Promise<User> {
-    const user = this.userRepository.create({ name, email, password });
-    return this.userRepository.save(user);
+  async findOneByUsername(username: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { username } });
   }
-
-  async findAll(): Promise<User[]> {
-    return this.userRepository.find();
-  }
-
-  async findOne(id: number): Promise<User | null> {
-    return this.userRepository.findOne({ where: { id } });
-  }
-
-  
-
-  async update(id: number, name: string, email: string, password: string): Promise<User | null> {
-    const user = await this.findOne(id);
-    if (!user) return null;
-    
-    user.name = name;
-    user.email = email;
-    user.password = password;
-    return this.userRepository.save(user);
-  }
-
-  async remove(id: number): Promise<boolean> {
-    const result = await this.userRepository.delete(id);
-    return (result.affected || 0) > 0; // Se for null/undefined, considera 0
-  }
-  
 }
