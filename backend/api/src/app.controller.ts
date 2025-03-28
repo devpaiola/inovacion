@@ -5,6 +5,9 @@ import { User } from './users/user.entity';
 
 @Controller()
 export class AppController {
+  getHello(): string {
+    return 'Hello World!';
+  }
   @Get('status')
   getStatus() {
     return { status: 'OK', message: 'Backend Inovacion rodando!' };

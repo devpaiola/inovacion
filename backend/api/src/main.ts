@@ -1,8 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { UsersService } from './users/users.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+
+  const userService = app.get(UsersService);
+
+  // Cria um usuário administrador ao iniciar o aplicativo
+  await userService.createAdminUser();
+
+  await app.listen(3000);
 }
+
 bootstrap();

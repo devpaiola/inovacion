@@ -8,10 +8,12 @@ export class User {
   @Column()
   name: string;
 
-  @Column({ unique: true })
+  @Column()
   email: string;
 
   @Column()
   password: string;
-    username: any;
+
+  @Column({ unique: true })
+  username: string; // Adicionando o campo username
 }
