@@ -58,10 +58,9 @@ export class UsersService {
     return this.usersRepository.save(user);
   }
 
-  async createAdminUser(): Promise<User> {
-    const existingUser = await this.usersRepository.findOne({ where: { username: 'admin' } });
-
-    if (existingUser) {
+  async createAdminUser() {
+    const existingAdmin = await this.usersRepository.findOne({ where: { username: 'admin' } });
+    if (existingAdmin) {
       throw new Error('O usuário admin já existe.');
     }
 
